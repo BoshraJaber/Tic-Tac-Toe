@@ -47,6 +47,26 @@ namespace Lab04_TicTacToe.Classes
 
             Use any and all pre-existing methods in this program to help construct the method logic. 
              */
+			int counter = 0;
+			//While there is not a winner, keep playing the game.
+			while (!CheckForWinner(Board) && counter < 9)
+			{
+				Console.WriteLine($"{PlayerOne.Name} is {PlayerOne.Marker}'s");
+				Console.WriteLine($"{PlayerTwo.Name} is {PlayerTwo.Marker}'s");
+
+				Board.DisplayBoard();
+				Player player = NextPlayer();
+
+				player.TakeTurn(Board);
+				SwitchPlayer();
+
+				Console.Clear();
+				counter++;
+			}
+
+			Board.DisplayBoard();
+
+			return Winner;
 		}
 
 
@@ -84,6 +104,11 @@ namespace Lab04_TicTacToe.Classes
 
 				// TODO:  Determine a winner has been reached. 
 				// return true if a winner has been reached. 
+				if ((a == b) && (b == c))
+				{
+					Winner = (a == "X" ? PlayerOne : PlayerTwo);
+					return true;
+				}
 
 			}
 
